@@ -6,5 +6,6 @@ RUN --mount=type=bind,source=./gf-plugins.txt,target=/tmp/gf-plugins.txt \
 
 ADD rootfs /
 
+USER root
 ENV GF_PATHS_DATA=/grafana/data
 VOLUME [ "/grafana/data" ]
