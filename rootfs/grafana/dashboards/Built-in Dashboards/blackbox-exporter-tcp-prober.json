@@ -864,7 +864,10 @@
     ],
     "refresh": "1m",
     "schemaVersion": 39,
-    "tags": [],
+    "tags": [
+        "blackbox",
+        "prometheus"
+    ],
     "templating": {
         "list": [
             {
@@ -951,6 +954,6 @@
     "timezone": "",
     "title": "Blackbox Exporter (TCP prober)",
     "uid": "bdojvelgocc1sa",
-    "version": 7,
+    "version": 8,
     "weekStart": ""
 }
