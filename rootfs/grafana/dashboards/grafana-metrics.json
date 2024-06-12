@@ -1326,25 +1326,7 @@
         "prometheus"
     ],
     "templating": {
-        "list": [
-            {
-                "current": {
-                    "selected": false,
-                    "text": "Prometheus",
-                    "value": "PBFA97CFB590B2093"
-                },
-                "hide": 0,
-                "includeAll": false,
-                "multi": false,
-                "name": "datasource",
-                "options": [],
-                "query": "prometheus",
-                "refresh": 1,
-                "regex": "",
-                "skipUrlSync": false,
-                "type": "datasource"
-            }
-        ]
+        "list": []
     },
     "time": {
         "from": "now-5m",
