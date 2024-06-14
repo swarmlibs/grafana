@@ -459,21 +459,9 @@
                     "intervalFactor": 1,
                     "legendFormat": "",
                     "refId": "E"
-                },
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "${datasource}"
-                    },
-                    "expr": "avg_over_time(probe_dns_lookup_time_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
-                    "format": "table",
-                    "instant": true,
-                    "interval": "",
-                    "legendFormat": "",
-                    "refId": "G"
                 }
             ],
-            "title": "HTTP Probe Overview",
+            "title": "TCP Probe Overview",
             "transformations": [
                 {
                     "id": "seriesToColumns",
@@ -482,6 +470,45 @@
                     }
                 },
                 {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Time": {
+                                "aggregations": []
+                            },
+                            "Time 1": {
+                                "aggregations": [
+                                    "lastNotNull"
+                                ],
+                                "operation": "groupby"
+                            },
+                            "Value #A": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Value #E": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "Value #G": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "__name__": {
+                                "aggregations": []
+                            },
+                            "instance": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            }
+                        }
+                    }
+                },
+                {
+                    "filter": {
+                        "id": "byRefId",
+                        "options": ""
+                    },
                     "id": "organize",
                     "options": {
                         "excludeByName": {
@@ -898,7 +925,7 @@
         ]
     },
     "time": {
-        "from": "now-6h",
+        "from": "now-30m",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
