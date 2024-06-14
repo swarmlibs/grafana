@@ -439,7 +439,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "probe_success{job=~\"$job\", instance=~\"$instance\"}",
+                    "expr": "probe_success{job=~\"$job\", instance=~\"$instance\", module=~\"tcp_connect\"}",
                     "format": "table",
                     "instant": true,
                     "interval": "",
@@ -451,7 +451,7 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "avg_over_time(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
+                    "expr": "avg_over_time(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\", module=~\"tcp_connect\"}[1m])",
                     "format": "table",
                     "hide": false,
                     "instant": false,
@@ -702,7 +702,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\"}) by (instance)",
+                    "expr": "sum(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\", module=~\"tcp_connect\"}) by (instance)",
                     "instant": false,
                     "interval": "",
                     "intervalFactor": 2,
@@ -816,7 +816,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "probe_duration_seconds{job=~\"$job\", instance=~\"$instance\"}",
+                            "expr": "probe_duration_seconds{job=~\"$job\", instance=~\"$instance\", module=~\"tcp_connect\"}",
                             "interval": "",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}}",
