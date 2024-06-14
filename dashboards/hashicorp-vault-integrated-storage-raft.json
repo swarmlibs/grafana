@@ -1769,7 +1769,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1877,7 +1878,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1978,7 +1980,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2073,7 +2076,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2199,7 +2203,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2313,7 +2318,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2386,9 +2392,9 @@
                 "x": 0,
                 "y": 61
             },
-            "id": 118,
+            "id": 115,
             "panels": [],
-            "title": "Cluster",
+            "title": "Integrated storage (Raft)",
             "type": "row"
         },
         {
@@ -2416,7 +2422,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text"
+                                "color": "text",
+                                "value": null
                             }
                         ]
                     }
@@ -2562,7 +2569,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2671,7 +2679,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2772,7 +2781,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2826,19 +2836,6 @@
             "type": "timeseries"
         },
         {
-            "collapsed": false,
-            "gridPos": {
-                "h": 1,
-                "w": 24,
-                "x": 0,
-                "y": 76
-            },
-            "id": 115,
-            "panels": [],
-            "title": "Integrated storage (Raft)",
-            "type": "row"
-        },
-        {
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
@@ -2887,7 +2884,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text"
+                                "color": "text",
+                                "value": null
                             }
                         ]
                     },
@@ -2918,7 +2916,8 @@
                                     "mode": "absolute",
                                     "steps": [
                                         {
-                                            "color": "green"
+                                            "color": "green",
+                                            "value": null
                                         },
                                         {
                                             "color": "light-orange",
@@ -2939,7 +2938,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 77
+                "y": 76
             },
             "id": 107,
             "options": {
@@ -3043,7 +3042,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -3063,7 +3063,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 77
+                "y": 76
             },
             "id": 108,
             "options": {
@@ -3152,7 +3152,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -3172,7 +3173,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 84
+                "y": 83
             },
             "id": 112,
             "options": {
@@ -3260,7 +3261,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -3280,7 +3282,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 84
+                "y": 83
             },
             "id": 110,
             "options": {
@@ -3369,7 +3371,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             }
                         ]
                     },
@@ -3381,7 +3384,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 91
+                "y": 90
             },
             "id": 109,
             "options": {
@@ -3436,7 +3439,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text"
+                                "color": "text",
+                                "value": null
                             }
                         ]
                     },
@@ -3448,7 +3452,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 91
+                "y": 90
             },
             "id": 111,
             "options": {
@@ -3499,7 +3503,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 98
+                "y": 97
             },
             "id": 45,
             "panels": [
@@ -3872,7 +3876,7 @@
         ]
     },
     "time": {
-        "from": "now-1h",
+        "from": "now-30m",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
@@ -3903,6 +3907,6 @@
     "timezone": "",
     "title": "Hashicorp Vault - Integrated storage (Raft)",
     "uid": "cdokwkbtoqmf4b",
-    "version": 6,
+    "version": 7,
     "weekStart": ""
 }
