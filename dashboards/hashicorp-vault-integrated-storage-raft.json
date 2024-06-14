@@ -20,7 +20,7 @@
     "fiscalYearStartMonth": 0,
     "gnetId": 12904,
     "graphTooltip": 1,
-    "id": 11,
+    "id": 9,
     "links": [],
     "panels": [
         {
@@ -83,8 +83,8 @@
                     "values": false
                 },
                 "showPercentChange": false,
-                "textMode": "auto",
-                "wideLayout": true
+                "textMode": "value_and_name",
+                "wideLayout": false
             },
             "pluginVersion": "11.0.0",
             "targets": [
@@ -2701,8 +2701,12 @@
             "id": 122,
             "options": {
                 "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
+                    "calcs": [
+                        "mean",
+                        "max",
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -2799,8 +2803,12 @@
             "id": 119,
             "options": {
                 "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
+                    "calcs": [
+                        "mean",
+                        "max",
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -2845,208 +2853,6 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "description": "This measures the time it takes for the leader to write log entries to disk.",
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
-                    "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "barAlignment": 0,
-                        "drawStyle": "line",
-                        "fillOpacity": 0,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "linear",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "never",
-                        "spanNulls": false,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "fieldMinMax": false,
-                    "mappings": [],
-                    "min": 0,
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            },
-                            {
-                                "color": "red",
-                                "value": 80
-                            }
-                        ]
-                    },
-                    "unit": "ms"
-                },
-                "overrides": []
-            },
-            "gridPos": {
-                "h": 7,
-                "w": 12,
-                "x": 0,
-                "y": 77
-            },
-            "id": 120,
-            "options": {
-                "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "tooltip": {
-                    "maxHeight": 600,
-                    "mode": "multi",
-                    "sort": "none"
-                }
-            },
-            "pluginVersion": "11.0.0",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "${datasource}"
-                    },
-                    "editorMode": "code",
-                    "expr": "vault_raft_leader_dispatchLog",
-                    "instant": false,
-                    "legendFormat": "{{quantile}}%",
-                    "range": true,
-                    "refId": "A"
-                }
-            ],
-            "title": "Write logs",
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-            },
-            "description": "This measures the time it takes for the leader to write log entries to disk.",
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
-                    "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "barAlignment": 0,
-                        "drawStyle": "line",
-                        "fillOpacity": 0,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "linear",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "never",
-                        "spanNulls": false,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "fieldMinMax": false,
-                    "mappings": [],
-                    "min": 0,
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            },
-                            {
-                                "color": "red",
-                                "value": 80
-                            }
-                        ]
-                    },
-                    "unit": "ms"
-                },
-                "overrides": []
-            },
-            "gridPos": {
-                "h": 7,
-                "w": 12,
-                "x": 12,
-                "y": 77
-            },
-            "id": 123,
-            "options": {
-                "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "tooltip": {
-                    "maxHeight": 600,
-                    "mode": "multi",
-                    "sort": "none"
-                }
-            },
-            "pluginVersion": "11.0.0",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "${datasource}"
-                    },
-                    "editorMode": "code",
-                    "expr": "vault_raft_commitTime",
-                    "instant": false,
-                    "legendFormat": "{{quantile}}%",
-                    "range": true,
-                    "refId": "A"
-                }
-            ],
-            "title": "Leader Commit time",
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-            },
             "description": "Time to write log, mark in flight, and start replication to followers",
             "fieldConfig": {
                 "defaults": {
@@ -3076,7 +2882,7 @@
                             "type": "linear"
                         },
                         "showPoints": "never",
-                        "spanNulls": false,
+                        "spanNulls": true,
                         "stacking": {
                             "group": "A",
                             "mode": "none"
@@ -3145,7 +2951,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 84
+                "y": 77
             },
             "id": 107,
             "options": {
@@ -3270,7 +3076,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 84
+                "y": 77
             },
             "id": 108,
             "options": {
@@ -3380,7 +3186,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 91
+                "y": 84
             },
             "id": 112,
             "options": {
@@ -3489,7 +3295,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 91
+                "y": 84
             },
             "id": 110,
             "options": {
@@ -3591,7 +3397,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 98
+                "y": 91
             },
             "id": 109,
             "options": {
@@ -3659,7 +3465,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 98
+                "y": 91
             },
             "id": 111,
             "options": {
@@ -3710,7 +3516,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 105
+                "y": 98
             },
             "id": 45,
             "panels": [
@@ -4114,6 +3920,6 @@
     "timezone": "",
     "title": "Hashicorp Vault - Integrated storage (Raft)",
     "uid": "cdokwkbtoqmf4b",
-    "version": 3,
+    "version": 5,
     "weekStart": ""
 }
