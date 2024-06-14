@@ -1769,8 +1769,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1878,8 +1877,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1980,8 +1978,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2076,8 +2073,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2203,8 +2199,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2318,8 +2313,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2422,8 +2416,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text",
-                                "value": null
+                                "color": "text"
                             }
                         ]
                     }
@@ -2569,8 +2562,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -2679,8 +2671,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2781,8 +2772,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2897,8 +2887,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text",
-                                "value": null
+                                "color": "text"
                             }
                         ]
                     },
@@ -2929,8 +2918,7 @@
                                     "mode": "absolute",
                                     "steps": [
                                         {
-                                            "color": "green",
-                                            "value": null
+                                            "color": "green"
                                         },
                                         {
                                             "color": "light-orange",
@@ -3055,8 +3043,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -3165,8 +3152,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -3274,8 +3260,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -3384,8 +3369,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             }
                         ]
                     },
@@ -3452,8 +3436,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text",
-                                "value": null
+                                "color": "text"
                             }
                         ]
                     },
@@ -3549,7 +3532,7 @@
                         "h": 5,
                         "w": 3,
                         "x": 0,
-                        "y": 109
+                        "y": 99
                     },
                     "id": 41,
                     "options": {
@@ -3623,7 +3606,7 @@
                         "h": 5,
                         "w": 3,
                         "x": 3,
-                        "y": 109
+                        "y": 99
                     },
                     "id": 76,
                     "options": {
@@ -3723,7 +3706,7 @@
                         "h": 5,
                         "w": 18,
                         "x": 6,
-                        "y": 109
+                        "y": 99
                     },
                     "id": 43,
                     "options": {
@@ -3889,7 +3872,7 @@
         ]
     },
     "time": {
-        "from": "now-30m",
+        "from": "now-1h",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
@@ -3920,6 +3903,6 @@
     "timezone": "",
     "title": "Hashicorp Vault - Integrated storage (Raft)",
     "uid": "cdokwkbtoqmf4b",
-    "version": 5,
+    "version": 6,
     "weekStart": ""
 }
