@@ -9,7 +9,7 @@
                 },
                 "enable": true,
                 "hide": true,
-                "iconColor": "rgba(0, 211, 255, 1)",
+                "iconColor": "rgba(02112551)",
                 "name": "Annotations & Alerts",
                 "type": "dashboard"
             }
@@ -95,7 +95,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": false,
-                    "expr": "vault_autopilot_healthy{namespace=\"$namespace\"}",
+                    "expr": "vault_autopilot_healthy{job=\"$job\"}",
                     "format": "time_series",
                     "instant": true,
                     "interval": "",
@@ -165,7 +165,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": false,
-                    "expr": "vault_autopilot_failure_tolerance{namespace=\"$namespace\"}",
+                    "expr": "vault_autopilot_failure_tolerance{job=\"$job\"}",
                     "instant": true,
                     "interval": "",
                     "legendFormat": "fault tolerance",
@@ -259,7 +259,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "max(1 + vault_core_unsealed{namespace=\"$namespace\"})",
+                    "expr": "max(1 + vault_core_unsealed{job=\"$job\"})",
                     "format": "time_series",
                     "interval": "",
                     "legendFormat": "{{ instance }}",
@@ -349,7 +349,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": false,
-                    "expr": "avg without(instance) (vault_secret_kv_count{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_secret_kv_count{job=\"$job\"})",
                     "format": "table",
                     "instant": true,
                     "interval": "",
@@ -469,7 +469,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(vault_expire_num_leases{namespace=\"$namespace\"})",
+                    "expr": "avg(vault_expire_num_leases{job=\"$job\"})",
                     "interval": "",
                     "legendFormat": "",
                     "range": true,
@@ -542,7 +542,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg without(instance) (vault_identity_entity_alias_count{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_identity_entity_alias_count{job=\"$job\"})",
                     "format": "time_series",
                     "interval": "",
                     "legendFormat": "{{ auth_method }}",
@@ -622,7 +622,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "up{job=~\".+/vault\", namespace=\"$namespace\"}",
+                    "expr": "up{job=\"$job\"}",
                     "format": "time_series",
                     "interval": "",
                     "legendFormat": "{{ instance }}",
@@ -684,7 +684,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(vault_identity_num_entities{namespace=\"$namespace\"})",
+                    "expr": "avg(vault_identity_num_entities{job=\"$job\"})",
                     "interval": "",
                     "legendFormat": "",
                     "range": true,
@@ -693,345 +693,6 @@
             ],
             "title": "Number of Identity Entities",
             "type": "stat"
-        },
-        {
-            "collapsed": true,
-            "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-            },
-            "gridPos": {
-                "h": 1,
-                "w": 24,
-                "x": 0,
-                "y": 13
-            },
-            "id": 74,
-            "panels": [
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "${datasource}"
-                    },
-                    "fieldConfig": {
-                        "defaults": {
-                            "color": {
-                                "mode": "palette-classic"
-                            },
-                            "custom": {
-                                "axisBorderShow": false,
-                                "axisCenteredZero": false,
-                                "axisColorMode": "text",
-                                "axisLabel": "Operations in 5 minute",
-                                "axisPlacement": "auto",
-                                "barAlignment": 0,
-                                "drawStyle": "bars",
-                                "fillOpacity": 100,
-                                "gradientMode": "none",
-                                "hideFrom": {
-                                    "legend": false,
-                                    "tooltip": false,
-                                    "viz": false
-                                },
-                                "insertNulls": false,
-                                "lineInterpolation": "linear",
-                                "lineWidth": 1,
-                                "pointSize": 5,
-                                "scaleDistribution": {
-                                    "type": "linear"
-                                },
-                                "showPoints": "never",
-                                "spanNulls": false,
-                                "stacking": {
-                                    "group": "A",
-                                    "mode": "normal"
-                                },
-                                "thresholdsStyle": {
-                                    "mode": "off"
-                                }
-                            },
-                            "decimals": 0,
-                            "mappings": [],
-                            "thresholds": {
-                                "mode": "absolute",
-                                "steps": [
-                                    {
-                                        "color": "green"
-                                    },
-                                    {
-                                        "color": "red",
-                                        "value": 80
-                                    }
-                                ]
-                            },
-                            "unit": "short"
-                        },
-                        "overrides": []
-                    },
-                    "gridPos": {
-                        "h": 9,
-                        "w": 12,
-                        "x": 0,
-                        "y": 14
-                    },
-                    "id": 24,
-                    "options": {
-                        "legend": {
-                            "calcs": [
-                                "max",
-                                "sum"
-                            ],
-                            "displayMode": "table",
-                            "placement": "bottom",
-                            "showLegend": true
-                        },
-                        "tooltip": {
-                            "maxHeight": 600,
-                            "mode": "multi",
-                            "sort": "none"
-                        }
-                    },
-                    "targets": [
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(increase(vault_route_create_${mountpoint}__count{namespace=\"$namespace\"}[5m]))",
-                            "format": "time_series",
-                            "hide": false,
-                            "interval": "5m",
-                            "legendFormat": "Create",
-                            "range": true,
-                            "refId": "A"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(increase(vault_route_delete_${mountpoint}__count{namespace=\"$namespace\"}[5m]))",
-                            "hide": false,
-                            "interval": "5m",
-                            "legendFormat": "Delete",
-                            "range": true,
-                            "refId": "B"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(increase(vault_route_read_${mountpoint}__count{namespace=\"$namespace\"}[5m]))",
-                            "format": "time_series",
-                            "hide": false,
-                            "instant": false,
-                            "interval": "5m",
-                            "intervalFactor": 1,
-                            "legendFormat": "Read",
-                            "refId": "C"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(increase(vault_route_list_${mountpoint}__count{namespace=\"$namespace\"}[5m]))",
-                            "format": "time_series",
-                            "hide": false,
-                            "interval": "5m",
-                            "legendFormat": "List",
-                            "range": true,
-                            "refId": "D"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(increase(vault_route_rollback_${mountpoint}__count{namespace=\"$namespace\"}[5m]))",
-                            "hide": true,
-                            "interval": "5m",
-                            "legendFormat": "Rollback",
-                            "range": true,
-                            "refId": "E"
-                        }
-                    ],
-                    "title": "Number of Operations in \"$mountpoint\"",
-                    "type": "timeseries"
-                },
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "${datasource}"
-                    },
-                    "fieldConfig": {
-                        "defaults": {
-                            "color": {
-                                "mode": "palette-classic"
-                            },
-                            "custom": {
-                                "axisBorderShow": false,
-                                "axisCenteredZero": false,
-                                "axisColorMode": "text",
-                                "axisLabel": "Time of one operation",
-                                "axisPlacement": "auto",
-                                "barAlignment": 0,
-                                "drawStyle": "line",
-                                "fillOpacity": 10,
-                                "gradientMode": "none",
-                                "hideFrom": {
-                                    "legend": false,
-                                    "tooltip": false,
-                                    "viz": false
-                                },
-                                "insertNulls": false,
-                                "lineInterpolation": "linear",
-                                "lineWidth": 1,
-                                "pointSize": 5,
-                                "scaleDistribution": {
-                                    "type": "linear"
-                                },
-                                "showPoints": "never",
-                                "spanNulls": false,
-                                "stacking": {
-                                    "group": "A",
-                                    "mode": "none"
-                                },
-                                "thresholdsStyle": {
-                                    "mode": "off"
-                                }
-                            },
-                            "decimals": 0,
-                            "mappings": [],
-                            "min": 0,
-                            "thresholds": {
-                                "mode": "absolute",
-                                "steps": [
-                                    {
-                                        "color": "green"
-                                    },
-                                    {
-                                        "color": "red",
-                                        "value": 80
-                                    }
-                                ]
-                            },
-                            "unit": "µs"
-                        },
-                        "overrides": []
-                    },
-                    "gridPos": {
-                        "h": 9,
-                        "w": 12,
-                        "x": 12,
-                        "y": 14
-                    },
-                    "id": 35,
-                    "options": {
-                        "legend": {
-                            "calcs": [
-                                "mean",
-                                "max"
-                            ],
-                            "displayMode": "table",
-                            "placement": "bottom",
-                            "showLegend": true
-                        },
-                        "tooltip": {
-                            "maxHeight": 600,
-                            "mode": "multi",
-                            "sort": "none"
-                        }
-                    },
-                    "targets": [
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(rate(vault_route_create_${mountpoint}__sum{namespace=\"$namespace\"}[1m]) / rate(vault_route_create_${mountpoint}__count{namespace=\"$namespace\"}[1m]) * 1000)",
-                            "format": "time_series",
-                            "interval": "",
-                            "intervalFactor": 1,
-                            "legendFormat": "Create",
-                            "range": true,
-                            "refId": "A"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(rate(vault_route_delete_${mountpoint}__sum{namespace=\"$namespace\"}[1m]) / rate(vault_route_delete_${mountpoint}__count{namespace=\"$namespace\"}[1m]) * 1000)",
-                            "interval": "",
-                            "legendFormat": "Delete",
-                            "range": true,
-                            "refId": "B"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(rate(vault_route_read_${mountpoint}__sum{namespace=\"$namespace\"}[1m]) / rate(vault_route_read_${mountpoint}__count{namespace=\"$namespace\"}[1m]) * 1000)",
-                            "hide": false,
-                            "interval": "",
-                            "legendFormat": "Read",
-                            "range": true,
-                            "refId": "C"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(rate(vault_route_list_${mountpoint}__sum{namespace=\"$namespace\"}[1m]) / rate(vault_route_list_${mountpoint}__count{namespace=\"$namespace\"}[1m]) * 1000)",
-                            "hide": false,
-                            "interval": "",
-                            "legendFormat": "List",
-                            "range": true,
-                            "refId": "D"
-                        },
-                        {
-                            "datasource": {
-                                "type": "prometheus",
-                                "uid": "${datasource}"
-                            },
-                            "editorMode": "code",
-                            "expr": "avg(rate(vault_route_rollback_${mountpoint}__sum{namespace=\"$namespace\"}[1m]) / rate(vault_route_rollback_${mountpoint}__count{namespace=\"$namespace\"}[1m]) * 1000)",
-                            "hide": true,
-                            "interval": "",
-                            "legendFormat": "Rollback",
-                            "range": true,
-                            "refId": "E"
-                        }
-                    ],
-                    "title": "Time of Operations in \"$mountpoint\"",
-                    "type": "timeseries"
-                }
-            ],
-            "repeat": "mountpoint",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "${datasource}"
-                    },
-                    "refId": "A"
-                }
-            ],
-            "title": "Path Info: $mountpoint",
-            "type": "row"
         },
         {
             "collapsed": false,
@@ -1043,7 +704,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 14
+                "y": 13
             },
             "id": 16,
             "panels": [],
@@ -1084,7 +745,7 @@
                 "h": 4,
                 "w": 3,
                 "x": 0,
-                "y": 15
+                "y": 14
             },
             "id": 53,
             "options": {
@@ -1111,7 +772,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(vault_token_count{namespace=\"$namespace\"})",
+                    "expr": "avg(vault_token_count{job=\"$job\"})",
                     "interval": "",
                     "legendFormat": "",
                     "range": true,
@@ -1173,7 +834,7 @@
                 "h": 8,
                 "w": 21,
                 "x": 3,
-                "y": 15
+                "y": 14
             },
             "id": 104,
             "options": {
@@ -1205,7 +866,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg without(instance) (vault_token_count_by_policy{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_token_count_by_policy{job=\"$job\"})",
                     "interval": "",
                     "legendFormat": "{{ policy }}",
                     "range": true,
@@ -1259,7 +920,7 @@
                 "h": 4,
                 "w": 3,
                 "x": 0,
-                "y": 19
+                "y": 18
             },
             "id": 8,
             "maxDataPoints": 100,
@@ -1292,7 +953,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(vault_token_create_count{namespace=\"$namespace\"} - vault_token_store_count{namespace=\"$namespace\"})",
+                    "expr": "avg(vault_token_create_count{job=\"$job\"} - vault_token_store_count{job=\"$job\"})",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 1,
@@ -1356,7 +1017,7 @@
                 "h": 8,
                 "w": 12,
                 "x": 0,
-                "y": 23
+                "y": 22
             },
             "id": 102,
             "options": {
@@ -1388,7 +1049,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg without(instance) (vault_token_count_by_ttl{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_token_count_by_ttl{job=\"$job\"})",
                     "format": "time_series",
                     "interval": "",
                     "legendFormat": "{{ creation_ttl }}",
@@ -1461,7 +1122,7 @@
                 "h": 8,
                 "w": 12,
                 "x": 12,
-                "y": 23
+                "y": 22
             },
             "id": 100,
             "options": {
@@ -1493,7 +1154,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg without(instance) (vault_token_count_by_auth{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_token_count_by_auth{job=\"$job\"})",
                     "interval": "",
                     "legendFormat": "{{ auth_method }}",
                     "range": true,
@@ -1577,7 +1238,7 @@
                 "h": 6,
                 "w": 12,
                 "x": 0,
-                "y": 31
+                "y": 30
             },
             "id": 65,
             "maxDataPoints": 100,
@@ -1602,7 +1263,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg by(auth_method, creation_ttl) (vault_token_creation{namespace=\"$namespace\"})",
+                    "expr": "avg by(auth_methodcreation_ttl) (vault_token_creation{job=\"$job\"})",
                     "format": "time_series",
                     "instant": false,
                     "interval": "",
@@ -1683,7 +1344,7 @@
                             {
                                 "id": "color",
                                 "value": {
-                                    "fixedColor": "rgb(84, 183, 90)",
+                                    "fixedColor": "rgb(8418390)",
                                     "mode": "fixed"
                                 }
                             }
@@ -1710,7 +1371,7 @@
                 "h": 6,
                 "w": 12,
                 "x": 12,
-                "y": 31
+                "y": 30
             },
             "id": 6,
             "options": {
@@ -1733,7 +1394,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg without(instance) (vault_token_create_count{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_token_create_count{job=\"$job\"})",
                     "format": "time_series",
                     "instant": false,
                     "interval": "",
@@ -1747,7 +1408,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg without(instance) (vault_token_store_count{namespace=\"$namespace\"})",
+                    "expr": "avg without(instance) (vault_token_store_count{job=\"$job\"})",
                     "format": "time_series",
                     "hide": false,
                     "instant": false,
@@ -1842,7 +1503,7 @@
                 "h": 6,
                 "w": 24,
                 "x": 0,
-                "y": 37
+                "y": 36
             },
             "id": 14,
             "options": {
@@ -1870,7 +1531,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(irate(vault_token_lookup_count{namespace=\"$namespace\"}[1m]))",
+                    "expr": "avg(irate(vault_token_lookup_count{job=\"$job\"}[1m]))",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "Lookups",
@@ -1891,7 +1552,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 43
+                "y": 42
             },
             "id": 20,
             "panels": [],
@@ -1936,7 +1597,7 @@
                 "h": 5,
                 "w": 4,
                 "x": 0,
-                "y": 44
+                "y": 43
             },
             "id": 97,
             "maxDataPoints": 100,
@@ -1964,7 +1625,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "max(idelta(vault_audit_log_request_failure{namespace=\"$namespace\"}[1m]))",
+                    "expr": "max(idelta(vault_audit_log_request_failure{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "interval": "",
                     "legendFormat": "Request",
@@ -2041,7 +1702,7 @@
                 "h": 10,
                 "w": 20,
                 "x": 4,
-                "y": 44
+                "y": 43
             },
             "id": 4,
             "options": {
@@ -2069,7 +1730,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(irate(vault_audit_log_request_count{namespace=\"$namespace\"}[1m]))",
+                    "expr": "avg(irate(vault_audit_log_request_count{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "instant": false,
                     "interval": "",
@@ -2083,7 +1744,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(irate(vault_audit_log_response_count{namespace=\"$namespace\"}[1m]))",
+                    "expr": "avg(irate(vault_audit_log_response_count{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "hide": false,
                     "instant": false,
@@ -2098,7 +1759,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(irate(vault_core_handle_request_count{namespace=\"$namespace\"}[1m]))",
+                    "expr": "avg(irate(vault_core_handle_request_count{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "hide": false,
                     "interval": "",
@@ -2140,7 +1801,7 @@
                 "h": 5,
                 "w": 4,
                 "x": 0,
-                "y": 49
+                "y": 48
             },
             "id": 98,
             "maxDataPoints": 100,
@@ -2168,7 +1829,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "max(idelta(vault_audit_log_response_failure{namespace=\"$namespace\"}[1m]))",
+                    "expr": "max(idelta(vault_audit_log_response_failure{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "interval": "",
                     "legendFormat": "Request",
@@ -2189,7 +1850,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 54
+                "y": 53
             },
             "id": 18,
             "panels": [],
@@ -2286,7 +1947,7 @@
                 "h": 6,
                 "w": 12,
                 "x": 0,
-                "y": 55
+                "y": 54
             },
             "id": 10,
             "options": {
@@ -2309,7 +1970,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(irate(vault_policy_set_policy_count{namespace=\"$namespace\"}[1m]))",
+                    "expr": "avg(irate(vault_policy_set_policy_count{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 1,
@@ -2403,7 +2064,7 @@
                 "h": 6,
                 "w": 12,
                 "x": 12,
-                "y": 55
+                "y": 54
             },
             "id": 12,
             "options": {
@@ -2426,7 +2087,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "avg(irate(vault_policy_get_policy_count{namespace=\"$namespace\"}[1m]))",
+                    "expr": "avg(irate(vault_policy_get_policy_count{job=\"$job\"}[1m]))",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 1,
@@ -2444,7 +2105,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 61
+                "y": 60
             },
             "id": 115,
             "panels": [],
@@ -2456,7 +2117,7 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "description": "This panel should show no activity in a stable cluster. Some leadership transition events are expected, such as during cluster upgrades. Unexpected events may indicate an issue with cluster stability",
+            "description": "This panel should show no activity in a stable cluster. Some leadership transition events are expectedsuch as during cluster upgrades. Unexpected events may indicate an issue with cluster stability",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -2519,7 +2180,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 62
+                "y": 61
             },
             "hideTimeOverride": false,
             "id": 113,
@@ -2547,7 +2208,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "increase(vault_raft_state_candidate{namespace=\"$namespace\"}[1m]) > 0",
+                    "expr": "increase(vault_raft_state_candidate{job=\"$job\"}[1m]) > 0",
                     "format": "time_series",
                     "hide": false,
                     "instant": false,
@@ -2563,7 +2224,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "increase(vault_raft_state_leader{namespace=\"$namespace\"}[1m]) > 0",
+                    "expr": "increase(vault_raft_state_leader{job=\"$job\"}[1m]) > 0",
                     "hide": false,
                     "instant": false,
                     "interval": "",
@@ -2645,7 +2306,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 62
+                "y": 61
             },
             "id": 112,
             "options": {
@@ -2674,7 +2335,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_fsm_applyBatch{namespace=\"$namespace\", quantile=\"0.9\"}",
+                    "expr": "vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"}",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "{{ instance }}",
@@ -2690,7 +2351,7 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "description": "Time to write log, mark in flight, and start replication to followers",
+            "description": "Time to write logmark in flightand start replication to followers",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -2788,7 +2449,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 69
+                "y": 68
             },
             "id": 107,
             "options": {
@@ -2817,7 +2478,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_leader_dispatchLog{namespace=\"$namespace\", quantile=\"0.9\"}",
+                    "expr": "vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"}",
                     "hide": false,
                     "interval": "",
                     "intervalFactor": 1,
@@ -2832,7 +2493,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "increase(vault_raft_leader_dispatchNumLogs{namespace=\"$namespace\"}[$__rate_interval])",
+                    "expr": "increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval])",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "Logs",
@@ -2912,7 +2573,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 69
+                "y": 68
             },
             "id": 110,
             "options": {
@@ -2941,7 +2602,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_rpc_appendEntries{namespace=\"$namespace\", quantile=\"0.9\"}",
+                    "expr": "vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"}",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "{{ instance }}",
@@ -3022,7 +2683,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 76
+                "y": 75
             },
             "id": 108,
             "options": {
@@ -3051,7 +2712,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_commitTime{namespace=\"$namespace\"}",
+                    "expr": "vault_raft_commitTime{job=\"$job\"}",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "{{ quantile }}",
@@ -3127,7 +2788,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 76
+                "y": 75
             },
             "id": 119,
             "options": {
@@ -3154,7 +2815,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "vault_raft_replication_heartbeat{namespace=\"$namespace\", quantile=\"0.9\"}",
+                    "expr": "vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"}",
                     "instant": false,
                     "legendFormat": "Node ID: {{ peer_id }}",
                     "range": true,
@@ -3233,7 +2894,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 83
+                "y": 82
             },
             "id": 114,
             "options": {
@@ -3262,7 +2923,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_leader_lastContact{namespace=\"$namespace\", quantile=\"0.9\"}",
+                    "expr": "vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"}",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "{{ instance }}",
@@ -3278,7 +2939,7 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "description": "This measures the time it takes to replicate log entries to followers. This is a general indicator of the load pressure on the Consul servers, as well as the performance of the communication between the servers.",
+            "description": "This measures the time it takes to replicate log entries to followers. This is a general indicator of the load pressure on the Consul serversas well as the performance of the communication between the servers.",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -3339,7 +3000,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 83
+                "y": 82
             },
             "id": 122,
             "options": {
@@ -3366,7 +3027,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "vault_raft_replication_appendEntries_rpc{namespace=\"$namespace\", quantile=\"0.9\"}",
+                    "expr": "vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"}",
                     "instant": false,
                     "legendFormat": "Node ID: {{ peer_id }}",
                     "range": true,
@@ -3438,7 +3099,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 0,
-                "y": 90
+                "y": 89
             },
             "id": 109,
             "options": {
@@ -3467,7 +3128,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "increase(vault_raft_apply{namespace=\"$namespace\"}[$__rate_interval])",
+                    "expr": "increase(vault_raft_apply{job=\"$job\"}[$__rate_interval])",
                     "interval": "",
                     "legendFormat": "{{ instance }}",
                     "range": true,
@@ -3506,7 +3167,7 @@
                 "h": 7,
                 "w": 12,
                 "x": 12,
-                "y": 90
+                "y": 89
             },
             "id": 111,
             "options": {
@@ -3536,7 +3197,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_storage_stats_applied_index{namespace=\"$namespace\"}",
+                    "expr": "vault_raft_storage_stats_applied_index{job=\"$job\"}",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "Node ID: {{ peer_id }}",
@@ -3557,7 +3218,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 97
+                "y": 96
             },
             "id": 45,
             "panels": [
@@ -3617,7 +3278,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_heap_objects{instance=~\"$node\", namespace=\"$namespace\"} / vault_runtime_malloc_count{instance=~\"$node\", namespace=\"$namespace\"})",
+                            "expr": "avg(vault_runtime_heap_objects{job=\"$job\"} / vault_runtime_malloc_count{job=\"$job\"})",
                             "interval": "",
                             "intervalFactor": 10,
                             "legendFormat": "",
@@ -3691,7 +3352,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_num_goroutines{instance=~\"$node\", namespace=\"$namespace\"})",
+                            "expr": "avg(vault_runtime_num_goroutines{job=\"$job\"})",
                             "interval": "",
                             "legendFormat": "",
                             "range": true,
@@ -3793,7 +3454,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_alloc_bytes{instance=~\"$node\", namespace=\"$namespace\"})",
+                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\"})",
                             "interval": "",
                             "intervalFactor": 5,
                             "legendFormat": "$node",
@@ -3805,7 +3466,7 @@
                     "type": "timeseries"
                 }
             ],
-            "repeat": "node",
+            "repeat": "instance",
             "repeatDirection": "h",
             "targets": [
                 {
@@ -3816,7 +3477,7 @@
                     "refId": "A"
                 }
             ],
-            "title": "Stats: $node",
+            "title": "Stats: $instance",
             "type": "row"
         }
     ],
@@ -3847,9 +3508,9 @@
             },
             {
                 "current": {
-                    "selected": true,
-                    "text": "vault_t",
-                    "value": "vault_t"
+                    "selected": false,
+                    "text": "valut_local",
+                    "value": "valut_local"
                 },
                 "datasource": {
                     "type": "prometheus",
@@ -3875,6 +3536,33 @@
             {
                 "current": {
                     "selected": false,
+                    "text": "valut_local/vault",
+                    "value": "valut_local/vault"
+                },
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "${datasource}"
+                },
+                "definition": "label_values(vault_core_active{namespace=\"$namespace\"},job)",
+                "hide": 0,
+                "includeAll": false,
+                "multi": false,
+                "name": "job",
+                "options": [],
+                "query": {
+                    "qryType": 1,
+                    "query": "label_values(vault_core_active{namespace=\"$namespace\"},job)",
+                    "refId": "PrometheusVariableQueryEditor-VariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "type": "query"
+            },
+            {
+                "current": {
+                    "selected": false,
                     "text": "All",
                     "value": "$__all"
                 },
@@ -3882,16 +3570,16 @@
                     "type": "prometheus",
                     "uid": "${datasource}"
                 },
-                "definition": "label_values(up{job=~\".+/vault\", namespace=\"$namespace\"},instance)",
+                "definition": "label_values(vault_core_active{job=\"$job\"},instance)",
                 "hide": 2,
                 "includeAll": true,
-                "label": "Host:",
+                "label": "",
                 "multi": false,
-                "name": "node",
+                "name": "instance",
                 "options": [],
                 "query": {
                     "qryType": 1,
-                    "query": "label_values(up{job=~\".+/vault\", namespace=\"$namespace\"},instance)",
+                    "query": "label_values(vault_core_active{job=\"$job\"},instance)",
                     "refId": "PrometheusVariableQueryEditor-VariableQuery"
                 },
                 "refresh": 1,
@@ -3902,70 +3590,11 @@
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
-            },
-            {
-                "current": {
-                    "isNone": true,
-                    "selected": false,
-                    "text": "None",
-                    "value": ""
-                },
-                "datasource": {
-                    "type": "prometheus",
-                    "uid": "${datasource}"
-                },
-                "definition": "label_values(up{job=~\".+/vault\",instance=~\"$node:(.*)\"}, instance)",
-                "hide": 2,
-                "includeAll": false,
-                "multi": false,
-                "name": "port",
-                "options": [],
-                "query": "label_values(up{job=~\".+/vault\",instance=~\"$node:(.*)\"}, instance)",
-                "refresh": 1,
-                "regex": "/[^:]+:(.*)/",
-                "skipUrlSync": false,
-                "sort": 0,
-                "tagValuesQuery": "",
-                "tagsQuery": "",
-                "type": "query",
-                "useTags": false
-            },
-            {
-                "allValue": "",
-                "current": {
-                    "selected": true,
-                    "text": [
-                        "All"
-                    ],
-                    "value": [
-                        "$__all"
-                    ]
-                },
-                "datasource": {
-                    "type": "prometheus",
-                    "uid": "${datasource}"
-                },
-                "definition": "label_values(vault_secret_kv_count, mount_point)",
-                "hide": 0,
-                "includeAll": true,
-                "label": "Mount Point:",
-                "multi": true,
-                "name": "mountpoint",
-                "options": [],
-                "query": "label_values(vault_secret_kv_count, mount_point)",
-                "refresh": 2,
-                "regex": "/(.*)//",
-                "skipUrlSync": false,
-                "sort": 1,
-                "tagValuesQuery": "",
-                "tagsQuery": "",
-                "type": "query",
-                "useTags": false
             }
         ]
     },
     "time": {
-        "from": "now-30m",
+        "from": "now-5m",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
@@ -3996,6 +3625,6 @@
     "timezone": "",
     "title": "Hashicorp Vault - Integrated storage (Raft)",
     "uid": "cdokwkbtoqmf4b",
-    "version": 12,
+    "version": 34,
     "weekStart": ""
 }
