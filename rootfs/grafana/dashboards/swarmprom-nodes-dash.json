@@ -332,10 +332,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "sum(irate(node_cpu_seconds_total{mode=\"idle\"}[$interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) * 100 / count(node_cpu_seconds_total{mode=\"user\"} * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) ",
+                    "editorMode": "code",
+                    "expr": "sum(irate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) * 100 / count(node_cpu_seconds_total{mode=\"user\"} * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) ",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "",
+                    "range": true,
                     "refId": "A",
                     "step": 2
                 }
@@ -579,10 +581,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[$interval])  * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"} * 100) by (node_name))",
+                    "editorMode": "code",
+                    "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval])  * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"} * 100) by (node_name))",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "{{node_name}}",
+                    "range": true,
                     "refId": "A",
                     "step": 2
                 }
@@ -1466,10 +1470,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "sum(irate(node_disk_read_bytes_total[$interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
+                    "editorMode": "code",
+                    "expr": "sum(irate(node_disk_read_bytes_total[$__rate_interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "Read {{node_name}}",
+                    "range": true,
                     "refId": "A",
                     "step": 2
                 },
@@ -1478,10 +1484,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "sum(irate(node_disk_written_bytes_total[$interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
+                    "editorMode": "code",
+                    "expr": "sum(irate(node_disk_written_bytes_total[$__rate_interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "Written {{node_name}}",
+                    "range": true,
                     "refId": "B",
                     "step": 2
                 }
@@ -1580,10 +1588,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "sum(irate(node_disk_reads_completed_total[$interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
+                    "editorMode": "code",
+                    "expr": "sum(irate(node_disk_reads_completed_total[$__rate_interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "Reads {{node_name}}",
+                    "range": true,
                     "refId": "A",
                     "step": 2
                 },
@@ -1592,10 +1602,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "sum(irate(node_disk_writes_completed_total[$interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
+                    "editorMode": "code",
+                    "expr": "sum(irate(node_disk_writes_completed_total[$__rate_interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) by (node_name)",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "Writes {{node_name}}",
+                    "range": true,
                     "refId": "B",
                     "step": 2
                 }
@@ -1735,10 +1747,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "(avg(irate(node_cpu_seconds_total{mode=\"iowait\"}[$interval])  * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"} * 100) by (node_name))",
+                    "editorMode": "code",
+                    "expr": "(avg(irate(node_cpu_seconds_total{mode=\"iowait\"}[$__rate_interval])  * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"} * 100) by (node_name))",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "{{node_name}}",
+                    "range": true,
                     "refId": "A",
                     "step": 2
                 }
@@ -2056,10 +2070,12 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "sum(rate(container_network_receive_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$interval]) * on(container_label_com_docker_swarm_node_id) group_left(node_name) node_meta) by (node_name)",
+                    "editorMode": "code",
+                    "expr": "sum(rate(container_network_receive_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$__rate_interval]) * on(container_label_com_docker_swarm_node_id) group_left(node_name) node_meta) by (node_name)",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "IN {{node_name}}",
+                    "range": true,
                     "refId": "A",
                     "step": 2
                 },
@@ -2068,12 +2084,14 @@
                         "type": "prometheus",
                         "uid": "${datasource}"
                     },
-                    "expr": "- sum(rate(container_network_transmit_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$interval]) * on(container_label_com_docker_swarm_node_id) group_left(node_name) node_meta) by (node_name)",
+                    "editorMode": "code",
+                    "expr": "- sum(rate(container_network_transmit_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$__rate_interval]) * on(container_label_com_docker_swarm_node_id) group_left(node_name) node_meta) by (node_name)",
                     "format": "time_series",
                     "hide": false,
                     "intervalFactor": 2,
                     "legendFormat": "OUT {{node_name}}",
                     "metric": "",
+                    "range": true,
                     "refId": "B",
                     "step": 2
                 }
@@ -2266,80 +2284,6 @@
                 "skipUrlSync": false,
                 "sort": 0,
                 "type": "query"
-            },
-            {
-                "auto": true,
-                "auto_count": 30,
-                "auto_min": "30s",
-                "current": {
-                    "selected": false,
-                    "text": "auto",
-                    "value": "$__auto_interval_interval"
-                },
-                "hide": 0,
-                "label": "Interval",
-                "name": "interval",
-                "options": [
-                    {
-                        "selected": true,
-                        "text": "auto",
-                        "value": "$__auto_interval_interval"
-                    },
-                    {
-                        "selected": false,
-                        "text": "1m",
-                        "value": "1m"
-                    },
-                    {
-                        "selected": false,
-                        "text": "10m",
-                        "value": "10m"
-                    },
-                    {
-                        "selected": false,
-                        "text": "30m",
-                        "value": "30m"
-                    },
-                    {
-                        "selected": false,
-                        "text": "1h",
-                        "value": "1h"
-                    },
-                    {
-                        "selected": false,
-                        "text": "6h",
-                        "value": "6h"
-                    },
-                    {
-                        "selected": false,
-                        "text": "12h",
-                        "value": "12h"
-                    },
-                    {
-                        "selected": false,
-                        "text": "1d",
-                        "value": "1d"
-                    },
-                    {
-                        "selected": false,
-                        "text": "7d",
-                        "value": "7d"
-                    },
-                    {
-                        "selected": false,
-                        "text": "14d",
-                        "value": "14d"
-                    },
-                    {
-                        "selected": false,
-                        "text": "30d",
-                        "value": "30d"
-                    }
-                ],
-                "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
-                "refresh": 2,
-                "skipUrlSync": false,
-                "type": "interval"
             }
         ]
     },
