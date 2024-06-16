@@ -1,0 +1,5 @@
+ARG GRAFANA_VERSION=latest
+FROM grafana/grafana:${GRAFANA_VERSION}
+ADD rootfs /
+ADD dashboards /grafana/dashboards/Developments
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
