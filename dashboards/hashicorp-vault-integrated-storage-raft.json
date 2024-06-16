@@ -20,7 +20,7 @@
     "fiscalYearStartMonth": 0,
     "gnetId": 12904,
     "graphTooltip": 1,
-    "id": 9,
+    "id": 11,
     "links": [],
     "panels": [
         {
@@ -110,6 +110,73 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 5,
+                "x": 5,
+                "y": 0
+            },
+            "id": 133,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "11.0.0",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
+                    },
+                    "editorMode": "code",
+                    "exemplar": false,
+                    "expr": "count(vault_raft_state_candidate{job=\"$job\"})",
+                    "instant": true,
+                    "legendFormat": "__auto",
+                    "range": false,
+                    "refId": "A"
+                }
+            ],
+            "title": "Replicas",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+            },
             "description": "",
             "fieldConfig": {
                 "defaults": {
@@ -136,10 +203,10 @@
             "gridPos": {
                 "h": 4,
                 "w": 5,
-                "x": 5,
+                "x": 10,
                 "y": 0
             },
-            "id": 117,
+            "id": 132,
             "options": {
                 "colorMode": "value",
                 "graphMode": "none",
@@ -622,11 +689,13 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
+                    "exemplar": false,
                     "expr": "up{job=\"$job\"}",
                     "format": "time_series",
+                    "instant": true,
                     "interval": "",
                     "legendFormat": "{{ instance }}",
-                    "range": true,
+                    "range": false,
                     "refId": "A"
                 }
             ],
@@ -1001,8 +1070,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1106,8 +1174,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1221,8 +1288,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1323,8 +1389,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1470,8 +1535,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1581,8 +1645,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1685,8 +1748,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1785,8 +1847,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -1914,8 +1975,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2031,8 +2091,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2137,8 +2196,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text",
-                                "value": null
+                                "color": "text"
                             }
                         ]
                     }
@@ -2285,8 +2343,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -2335,10 +2392,10 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"}",
+                    "expr": "sum without (instance) (vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"})",
                     "interval": "",
                     "intervalFactor": 1,
-                    "legendFormat": "{{ instance }}",
+                    "legendFormat": "{{ task }}",
                     "range": true,
                     "refId": "A"
                 }
@@ -2395,8 +2452,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text",
-                                "value": null
+                                "color": "text"
                             }
                         ]
                     },
@@ -2427,8 +2483,7 @@
                                     "mode": "absolute",
                                     "steps": [
                                         {
-                                            "color": "green",
-                                            "value": null
+                                            "color": "green"
                                         },
                                         {
                                             "color": "light-orange",
@@ -2478,7 +2533,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"}",
+                    "expr": "sum without (instance) (vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"})",
                     "hide": false,
                     "interval": "",
                     "intervalFactor": 1,
@@ -2493,7 +2548,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval])",
+                    "expr": "sum without (instance) (increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval]))",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "Logs",
@@ -2552,8 +2607,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -2602,10 +2656,10 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"}",
+                    "expr": "sum without (instance) (vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"})",
                     "interval": "",
                     "intervalFactor": 1,
-                    "legendFormat": "{{ instance }}",
+                    "legendFormat": "{{ task }}",
                     "range": true,
                     "refId": "A"
                 }
@@ -2662,8 +2716,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -2712,7 +2765,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_commitTime{job=\"$job\"}",
+                    "expr": "sum without (instance) (vault_raft_commitTime{job=\"$job\"})",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "{{ quantile }}",
@@ -2771,8 +2824,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -2815,9 +2867,9 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"}",
+                    "expr": "sum without (instance) (vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"})",
                     "instant": false,
-                    "legendFormat": "Node ID: {{ peer_id }}",
+                    "legendFormat": "{{ task }}",
                     "range": true,
                     "refId": "A"
                 }
@@ -2873,8 +2925,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "yellow",
@@ -2923,10 +2974,10 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"}",
+                    "expr": "sum without (instance) (vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"})",
                     "interval": "",
                     "intervalFactor": 1,
-                    "legendFormat": "{{ instance }}",
+                    "legendFormat": "{{ task }}",
                     "range": true,
                     "refId": "C"
                 }
@@ -2983,8 +3034,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -3027,9 +3077,9 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"}",
+                    "expr": "sum without (instance) (vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"})",
                     "instant": false,
-                    "legendFormat": "Node ID: {{ peer_id }}",
+                    "legendFormat": "{{ task }}",
                     "range": true,
                     "refId": "A"
                 }
@@ -3086,8 +3136,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             }
                         ]
                     },
@@ -3128,9 +3177,9 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "increase(vault_raft_apply{job=\"$job\"}[$__rate_interval])",
+                    "expr": "sum without (instance) (increase(vault_raft_apply{job=\"$job\"}[$__rate_interval]))",
                     "interval": "",
-                    "legendFormat": "{{ instance }}",
+                    "legendFormat": "{{task}}",
                     "range": true,
                     "refId": "A"
                 }
@@ -3154,8 +3203,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text",
-                                "value": null
+                                "color": "text"
                             }
                         ]
                     },
@@ -3197,10 +3245,10 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "vault_raft_storage_stats_applied_index{job=\"$job\"}",
+                    "expr": "sum without (instance, peer_id) (vault_raft_storage_stats_applied_index{job=\"$job\"})",
                     "interval": "",
                     "intervalFactor": 1,
-                    "legendFormat": "Node ID: {{ peer_id }}",
+                    "legendFormat": "{{ task }}",
                     "range": true,
                     "refId": "A"
                 }
@@ -3222,6 +3270,88 @@
             },
             "id": 45,
             "panels": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "${datasource}"
+                    },
+                    "fieldConfig": {
+                        "defaults": {
+                            "mappings": [
+                                {
+                                    "options": {
+                                        "1": {
+                                            "text": "SEALED"
+                                        },
+                                        "2": {
+                                            "text": "UNSEALED"
+                                        }
+                                    },
+                                    "type": "value"
+                                }
+                            ],
+                            "noValue": "N/A",
+                            "thresholds": {
+                                "mode": "absolute",
+                                "steps": [
+                                    {
+                                        "color": "red"
+                                    },
+                                    {
+                                        "color": "yellow",
+                                        "value": 1
+                                    },
+                                    {
+                                        "color": "green",
+                                        "value": 2
+                                    }
+                                ]
+                            }
+                        },
+                        "overrides": []
+                    },
+                    "gridPos": {
+                        "h": 5,
+                        "w": 6,
+                        "x": 0,
+                        "y": 105
+                    },
+                    "id": 131,
+                    "options": {
+                        "colorMode": "value",
+                        "graphMode": "none",
+                        "justifyMode": "auto",
+                        "orientation": "auto",
+                        "reduceOptions": {
+                            "calcs": [
+                                "last"
+                            ],
+                            "fields": "",
+                            "values": false
+                        },
+                        "showPercentChange": false,
+                        "textMode": "auto",
+                        "wideLayout": true
+                    },
+                    "pluginVersion": "11.0.0",
+                    "targets": [
+                        {
+                            "datasource": {
+                                "type": "prometheus",
+                                "uid": "${datasource}"
+                            },
+                            "editorMode": "code",
+                            "expr": "max(1 + vault_core_unsealed{job=\"$job\"})",
+                            "format": "time_series",
+                            "interval": "",
+                            "legendFormat": "{{ instance }}",
+                            "range": true,
+                            "refId": "A"
+                        }
+                    ],
+                    "title": "Sealed Status",
+                    "type": "stat"
+                },
                 {
                     "datasource": {
                         "type": "prometheus",
@@ -3250,8 +3380,8 @@
                     "gridPos": {
                         "h": 5,
                         "w": 3,
-                        "x": 0,
-                        "y": 98
+                        "x": 6,
+                        "y": 105
                     },
                     "id": 41,
                     "options": {
@@ -3278,7 +3408,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_heap_objects{job=\"$job\"} / vault_runtime_malloc_count{job=\"$job\"})",
+                            "expr": "avg(vault_runtime_heap_objects{job=\"$job\", task=~\"$task\"} / vault_runtime_malloc_count{job=\"$job\", task=~\"$task\"})",
                             "interval": "",
                             "intervalFactor": 10,
                             "legendFormat": "",
@@ -3324,8 +3454,8 @@
                     "gridPos": {
                         "h": 5,
                         "w": 3,
-                        "x": 3,
-                        "y": 98
+                        "x": 9,
+                        "y": 105
                     },
                     "id": 76,
                     "options": {
@@ -3352,7 +3482,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_num_goroutines{job=\"$job\"})",
+                            "expr": "avg(vault_runtime_num_goroutines{job=\"$job\", task=~\"$task\"})",
                             "interval": "",
                             "legendFormat": "",
                             "range": true,
@@ -3423,9 +3553,9 @@
                     },
                     "gridPos": {
                         "h": 5,
-                        "w": 18,
-                        "x": 6,
-                        "y": 98
+                        "w": 12,
+                        "x": 12,
+                        "y": 105
                     },
                     "id": 43,
                     "options": {
@@ -3454,10 +3584,10 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\"})",
+                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\", task=~\"$task\"})",
                             "interval": "",
                             "intervalFactor": 5,
-                            "legendFormat": "$node",
+                            "legendFormat": "$task",
                             "range": true,
                             "refId": "A"
                         }
@@ -3466,7 +3596,7 @@
                     "type": "timeseries"
                 }
             ],
-            "repeat": "instance",
+            "repeat": "task",
             "repeatDirection": "h",
             "targets": [
                 {
@@ -3477,11 +3607,11 @@
                     "refId": "A"
                 }
             ],
-            "title": "Stats: $instance",
+            "title": "Stats: $task",
             "type": "row"
         }
     ],
-    "refresh": "10s",
+    "refresh": "30s",
     "schemaVersion": 39,
     "tags": [
         "vault",
@@ -3508,9 +3638,9 @@
             },
             {
                 "current": {
-                    "selected": false,
-                    "text": "valut_local",
-                    "value": "valut_local"
+                    "selected": true,
+                    "text": "valut_local2",
+                    "value": "valut_local2"
                 },
                 "datasource": {
                     "type": "prometheus",
@@ -3536,8 +3666,8 @@
             {
                 "current": {
                     "selected": false,
-                    "text": "valut_local/vault",
-                    "value": "valut_local/vault"
+                    "text": "valut_local2/vault",
+                    "value": "valut_local2/vault"
                 },
                 "datasource": {
                     "type": "prometheus",
@@ -3570,16 +3700,16 @@
                     "type": "prometheus",
                     "uid": "${datasource}"
                 },
-                "definition": "label_values(vault_core_active{job=\"$job\"},instance)",
+                "definition": "label_values(vault_core_active{job=\"$job\"},task)",
                 "hide": 2,
                 "includeAll": true,
                 "label": "",
                 "multi": false,
-                "name": "instance",
+                "name": "task",
                 "options": [],
                 "query": {
                     "qryType": 1,
-                    "query": "label_values(vault_core_active{job=\"$job\"},instance)",
+                    "query": "label_values(vault_core_active{job=\"$job\"},task)",
                     "refId": "PrometheusVariableQueryEditor-VariableQuery"
                 },
                 "refresh": 1,
@@ -3594,7 +3724,7 @@
         ]
     },
     "time": {
-        "from": "now-5m",
+        "from": "now-1h",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
