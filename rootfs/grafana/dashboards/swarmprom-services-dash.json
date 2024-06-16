@@ -20,7 +20,6 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2,
     "links": [],
     "panels": [
         {
@@ -1001,16 +1000,65 @@
             "type": "timeseries"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "decbytes"
+                },
+                "overrides": []
+            },
             "gridPos": {
                 "h": 7,
                 "w": 20,
@@ -1018,30 +1066,23 @@
                 "y": 25
             },
             "id": 24,
-            "legend": {
-                "alignAsTable": true,
-                "avg": true,
-                "current": false,
-                "max": true,
-                "min": true,
-                "rightSide": true,
-                "show": true,
-                "sort": "avg",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "none"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1068,52 +1109,49 @@
                     "step": 2
                 }
             ],
-            "thresholds": [],
             "title": "Memory usage by Service",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "decbytes",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "autoMigrateFrom": "singlestat",
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "format": "percent",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "match": "null",
+                                "result": {
+                                    "text": "N/A"
+                                }
+                            },
+                            "type": "special"
+                        }
+                    ],
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "rgba(245, 54, 54, 0.9)",
+                                "value": null
+                            },
+                            {
+                                "color": "rgba(237, 129, 40, 0.89)",
+                                "value": 10
+                            },
+                            {
+                                "color": "rgba(50, 172, 45, 0.97)",
+                                "value": 25
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": []
             },
             "gridPos": {
                 "h": 7,
@@ -1122,37 +1160,24 @@
                 "y": 25
             },
             "id": 8,
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
             "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
+            "options": {
+                "colorMode": "none",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [
+                        "mean"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
             },
-            "tableColumn": "",
+            "pluginVersion": "11.0.0",
             "targets": [
                 {
                     "datasource": {
@@ -1167,30 +1192,69 @@
                     "step": 20
                 }
             ],
-            "thresholds": "10,25,100",
             "title": "Available Memory",
-            "type": "stat",
-            "valueFontSize": "80%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "avg"
+            "type": "stat"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "decbytes"
+                },
+                "overrides": []
+            },
             "gridPos": {
                 "h": 7,
                 "w": 24,
@@ -1198,32 +1262,21 @@
                 "y": 32
             },
             "id": 34,
-            "legend": {
-                "alignAsTable": true,
-                "avg": true,
-                "current": false,
-                "hideEmpty": false,
-                "hideZero": false,
-                "max": false,
-                "min": false,
-                "rightSide": true,
-                "show": true,
-                "sort": "avg",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "desc"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1238,43 +1291,69 @@
                     "step": 2
                 }
             ],
-            "thresholds": [],
             "title": "Memory usage by Container (top 10)",
-            "tooltip": {
-                "shared": true,
-                "sort": 2,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "decbytes",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": false
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "Bps"
+                },
+                "overrides": []
+            },
             "gridPos": {
                 "h": 7,
                 "w": 24,
@@ -1282,30 +1361,23 @@
                 "y": 39
             },
             "id": 17,
-            "legend": {
-                "alignAsTable": true,
-                "avg": true,
-                "current": false,
-                "max": true,
-                "min": true,
-                "rightSide": true,
-                "show": true,
-                "sort": "avg",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "none"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1320,43 +1392,69 @@
                     "step": 2
                 }
             ],
-            "thresholds": [],
             "title": "Network received by Service",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "Bps",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "Bps"
+                },
+                "overrides": []
+            },
             "gridPos": {
                 "h": 7,
                 "w": 24,
@@ -1364,30 +1462,23 @@
                 "y": 46
             },
             "id": 25,
-            "legend": {
-                "alignAsTable": true,
-                "avg": true,
-                "current": false,
-                "max": true,
-                "min": true,
-                "rightSide": true,
-                "show": true,
-                "sort": "avg",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "none"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1403,43 +1494,69 @@
                     "step": 2
                 }
             ],
-            "thresholds": [],
             "title": "Network transmitted by Service",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "Bps",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "Bps"
+                },
+                "overrides": []
+            },
             "gridPos": {
                 "h": 7,
                 "w": 10,
@@ -1447,26 +1564,21 @@
                 "y": 53
             },
             "id": 31,
-            "legend": {
-                "avg": true,
-                "current": false,
-                "max": false,
-                "min": false,
-                "show": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean"
+                    ],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "none"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1493,43 +1605,69 @@
                     "step": 4
                 }
             ],
-            "thresholds": [],
             "title": "Cluster Network Traffic",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "Bps",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
             "gridPos": {
                 "h": 7,
                 "w": 10,
@@ -1537,28 +1675,23 @@
                 "y": 53
             },
             "id": 26,
-            "legend": {
-                "alignAsTable": false,
-                "avg": true,
-                "current": false,
-                "max": true,
-                "min": true,
-                "rightSide": false,
-                "show": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "none"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1585,52 +1718,49 @@
                     "step": 4
                 }
             ],
-            "thresholds": [],
             "title": "Cluster IOPS",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "autoMigrateFrom": "singlestat",
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "format": "percent",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [
+                        {
+                            "options": {
+                                "match": "null",
+                                "result": {
+                                    "text": "N/A"
+                                }
+                            },
+                            "type": "special"
+                        }
+                    ],
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "rgba(245, 54, 54, 0.9)",
+                                "value": null
+                            },
+                            {
+                                "color": "rgba(237, 129, 40, 0.89)",
+                                "value": 10
+                            },
+                            {
+                                "color": "rgba(50, 172, 45, 0.97)",
+                                "value": 25
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": []
             },
             "gridPos": {
                 "h": 7,
@@ -1639,37 +1769,24 @@
                 "y": 53
             },
             "id": 27,
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
             "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
+            "options": {
+                "colorMode": "none",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [
+                        "mean"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
             },
-            "tableColumn": "",
+            "pluginVersion": "11.0.0",
             "targets": [
                 {
                     "datasource": {
@@ -1684,31 +1801,110 @@
                     "step": 20
                 }
             ],
-            "thresholds": "10,25,100",
             "title": "Available Disk Space",
-            "type": "stat",
-            "valueFontSize": "80%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "avg"
+            "type": "stat"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "decimals": 0,
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byValue",
+                            "options": {
+                                "op": "gte",
+                                "reducer": "allIsZero",
+                                "value": 0
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": true,
+                                    "tooltip": true,
+                                    "viz": false
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byValue",
+                            "options": {
+                                "op": "gte",
+                                "reducer": "allIsNull",
+                                "value": 0
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": true,
+                                    "tooltip": true,
+                                    "viz": false
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
             "gridPos": {
                 "h": 7,
                 "w": 12,
@@ -1716,32 +1912,21 @@
                 "y": 60
             },
             "id": 29,
-            "legend": {
-                "alignAsTable": true,
-                "avg": false,
-                "current": true,
-                "hideEmpty": true,
-                "hideZero": true,
-                "max": false,
-                "min": false,
-                "rightSide": true,
-                "show": true,
-                "sort": "current",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "desc"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1756,44 +1941,110 @@
                     "step": 10
                 }
             ],
-            "thresholds": [],
             "title": "Docker Daemon Container Actions",
-            "tooltip": {
-                "shared": true,
-                "sort": 2,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "decimals": 0,
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byValue",
+                            "options": {
+                                "op": "gte",
+                                "reducer": "allIsZero",
+                                "value": 0
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": true,
+                                    "tooltip": true,
+                                    "viz": false
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byValue",
+                            "options": {
+                                "op": "gte",
+                                "reducer": "allIsNull",
+                                "value": 0
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": true,
+                                    "tooltip": true,
+                                    "viz": false
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
             "gridPos": {
                 "h": 7,
                 "w": 12,
@@ -1801,32 +2052,21 @@
                 "y": 60
             },
             "id": 30,
-            "legend": {
-                "alignAsTable": true,
-                "avg": false,
-                "current": true,
-                "hideEmpty": true,
-                "hideZero": true,
-                "max": false,
-                "min": false,
-                "rightSide": true,
-                "show": true,
-                "sort": "current",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "desc"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
@@ -1841,45 +2081,62 @@
                     "step": 10
                 }
             ],
-            "thresholds": [],
             "title": "Docker Daemon Network Actions",
-            "tooltip": {
-                "shared": true,
-                "sort": 2,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": true
-                }
-            ]
+            "type": "timeseries"
         },
         {
-            "autoMigrateFrom": "table-old",
-            "columns": [
-                {
-                    "text": "Avg",
-                    "value": "avg"
-                }
-            ],
             "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
             },
-            "fontSize": "100%",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "cellOptions": {
+                            "type": "auto"
+                        },
+                        "inspect": false
+                    },
+                    "decimals": 2,
+                    "displayName": "",
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Time"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "Time"
+                            },
+                            {
+                                "id": "custom.hidden",
+                                "value": true
+                            },
+                            {
+                                "id": "custom.align"
+                            }
+                        ]
+                    }
+                ]
+            },
             "gridPos": {
                 "h": 7,
                 "w": 24,
@@ -1888,35 +2145,25 @@
             },
             "hideTimeOverride": true,
             "id": 28,
-            "scroll": true,
-            "showHeader": true,
-            "sort": {
-                "col": 0,
-                "desc": true
-            },
-            "styles": [
-                {
-                    "alias": "Time",
-                    "align": "auto",
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "pattern": "Time",
-                    "type": "hidden"
-                },
-                {
-                    "alias": "",
-                    "align": "auto",
-                    "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
+            "options": {
+                "cellHeight": "sm",
+                "footer": {
+                    "countRows": false,
+                    "fields": "",
+                    "reducer": [
+                        "sum"
                     ],
-                    "decimals": 2,
-                    "pattern": "/.*/",
-                    "thresholds": [],
-                    "type": "number",
-                    "unit": "short"
-                }
-            ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": false,
+                        "displayName": "overlay2 {Time=\"1718567709439\", kernel=\"6.6.22-linuxkit\", node_id=\"ro06pl57tb2ghdxtl7oqvvn4x\", os=\"Docker Desktop\", version=\"26.0.0\"}"
+                    }
+                ]
+            },
+            "pluginVersion": "11.0.0",
             "targets": [
                 {
                     "datasource": {
@@ -1934,7 +2181,42 @@
             ],
             "timeFrom": "1s",
             "title": "Docker Engine Info",
-            "transform": "timeseries_to_rows",
+            "transformations": [
+                {
+                    "disabled": true,
+                    "id": "seriesToRows",
+                    "options": {
+                        "reducers": []
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true,
+                            "Value": true
+                        },
+                        "includeByName": {},
+                        "indexByName": {
+                            "Time": 5,
+                            "Value": 6,
+                            "graphdriver": 4,
+                            "kernel": 3,
+                            "node_id": 0,
+                            "os": 2,
+                            "version": 1
+                        },
+                        "renameByName": {
+                            "Time": "",
+                            "graphdriver": "Graphic driver",
+                            "kernel": "Kernel verison",
+                            "node_id": "Node ID",
+                            "os": "Operating System",
+                            "version": "Docker Engine version"
+                        }
+                    }
+                }
+            ],
             "type": "table"
         }
     ],
