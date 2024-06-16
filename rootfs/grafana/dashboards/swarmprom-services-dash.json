@@ -20,12 +20,13 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
+    "id": 2,
     "links": [],
     "panels": [
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -88,7 +89,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "count(count(container_tasks_state{container_label_com_docker_swarm_node_id =~\"$node_id\"}) by (container_label_com_docker_swarm_node_id))",
                     "format": "time_series",
@@ -105,7 +106,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -168,7 +169,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "count(count(container_tasks_state{container_label_com_docker_stack_namespace=~\".+\", container_label_com_docker_swarm_node_id=~\"$node_id\"}) by (container_label_com_docker_stack_namespace))",
                     "format": "time_series",
@@ -185,7 +186,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -248,7 +249,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "count(count(container_tasks_state{container_label_com_docker_swarm_service_name=~\".+\", container_label_com_docker_swarm_node_id=~\"$node_id\"}) by (container_label_com_docker_swarm_service_name))",
                     "format": "time_series",
@@ -264,7 +265,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -327,7 +328,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "count(rate(container_last_seen{container_label_com_docker_swarm_node_id=~\"$node_id\"}[5m])) ",
                     "format": "time_series",
@@ -343,7 +344,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -467,7 +468,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(rate(container_last_seen{container_label_com_docker_swarm_node_id=~\"$node_id\"}[5m])) by (container_label_com_docker_swarm_service_name)",
                     "format": "time_series",
@@ -483,7 +484,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -607,7 +608,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(increase(engine_daemon_health_checks_total[$interval]) * on(instance) group_left(node_id) swarm_node_info{node_id=~\"$node_id\"})  ",
                     "format": "time_series",
@@ -619,7 +620,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(increase(engine_daemon_health_checks_failed_total[$interval]) * on(instance) group_left(node_id) swarm_node_info{node_id=~\"$node_id\"})  ",
                     "format": "time_series",
@@ -635,7 +636,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -761,7 +762,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(irate(container_cpu_usage_seconds_total{container_label_com_docker_swarm_node_id=~\"$node_id\", id=~\"/docker/.*\"}[1m])) by (container_label_com_docker_swarm_service_name) * 100 ",
                     "format": "time_series",
@@ -777,7 +778,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fieldConfig": {
                 "defaults": {
@@ -845,7 +846,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(irate(node_cpu_seconds_total{mode=\"idle\"}[$interval]) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) * 100 / count(node_cpu_seconds_total{mode=\"user\"} * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"}) ",
                     "format": "time_series",
@@ -860,17 +861,106 @@
             "type": "stat"
         },
         {
-            "aliasColors": {},
-            "autoMigrateFrom": "graph",
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
-            "decimals": 2,
-            "fill": 1,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byValue",
+                            "options": {
+                                "op": "gte",
+                                "reducer": "allIsZero",
+                                "value": 0
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": true,
+                                    "tooltip": true,
+                                    "viz": false
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byValue",
+                            "options": {
+                                "op": "gte",
+                                "reducer": "allIsNull",
+                                "value": 0
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": true,
+                                    "tooltip": true,
+                                    "viz": false
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
             "gridPos": {
                 "h": 7,
                 "w": 24,
@@ -878,37 +968,26 @@
                 "y": 18
             },
             "id": 33,
-            "legend": {
-                "alignAsTable": true,
-                "avg": true,
-                "current": false,
-                "hideEmpty": true,
-                "hideZero": true,
-                "max": false,
-                "min": false,
-                "rightSide": true,
-                "show": true,
-                "sort": "avg",
-                "sortDesc": true,
-                "total": false,
-                "values": true
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "maxHeight": 600,
+                    "mode": "multi",
+                    "sort": "desc"
+                }
             },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null as zero",
-            "percentage": false,
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
             "targets": [
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "topk(10, sum(irate(container_cpu_usage_seconds_total{container_label_com_docker_swarm_node_id=~\"$node_id\", id=~\"/docker/.*\"}[$interval])) by (name)) * 100 ",
                     "format": "time_series",
@@ -918,31 +997,8 @@
                     "step": 2
                 }
             ],
-            "thresholds": [],
             "title": "CPU usage by Container (top 10)",
-            "tooltip": {
-                "shared": true,
-                "sort": 2,
-                "value_type": "individual"
-            },
-            "type": "timeseries",
-            "xaxis": {
-                "mode": "time",
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "percent",
-                    "logBase": 1,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "logBase": 1,
-                    "show": false
-                }
-            ]
+            "type": "timeseries"
         },
         {
             "aliasColors": {},
@@ -952,7 +1008,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fill": 1,
             "gridPos": {
@@ -990,7 +1046,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(container_memory_usage_bytes{container_label_com_docker_swarm_node_id=~\"$node_id\", id=~\"/docker/.*\"}) by (container_label_com_docker_swarm_service_name) ",
                     "format": "time_series",
@@ -1002,7 +1058,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(container_memory_cache{container_label_com_docker_swarm_node_id=~\"$node_id\", id=~\"/docker/.*\"}) by (container_label_com_docker_swarm_service_name) ",
                     "format": "time_series",
@@ -1049,7 +1105,7 @@
             ],
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "format": "percent",
             "gauge": {
@@ -1101,7 +1157,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum((node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"} * 100) / count(node_meta * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"})",
                     "format": "time_series",
@@ -1132,7 +1188,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fill": 1,
             "gridPos": {
@@ -1172,7 +1228,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "topk(10, avg_over_time(container_memory_usage_bytes{container_label_com_docker_swarm_node_id=~\"$node_id\", id=~\"/docker/.*\"}[$interval]))",
                     "format": "time_series",
@@ -1216,7 +1272,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fill": 1,
             "gridPos": {
@@ -1254,7 +1310,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(rate(container_network_receive_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$interval])) by (container_label_com_docker_swarm_service_name)",
                     "format": "time_series",
@@ -1298,7 +1354,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fill": 1,
             "gridPos": {
@@ -1336,7 +1392,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(rate(container_network_transmit_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$interval])) by (container_label_com_docker_swarm_service_name)",
                     "format": "time_series",
@@ -1381,7 +1437,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fill": 1,
             "gridPos": {
@@ -1415,7 +1471,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(rate(container_network_receive_bytes_total{id=\"/\"}[$interval])) by (id)",
                     "format": "time_series",
@@ -1427,7 +1483,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "- sum(rate(container_network_transmit_bytes_total{id=\"/\"}[$interval])) by (id)",
                     "format": "time_series",
@@ -1471,7 +1527,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fill": 1,
             "gridPos": {
@@ -1507,7 +1563,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(irate(container_fs_reads_total[$interval]) )",
                     "format": "time_series",
@@ -1519,7 +1575,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(irate(container_fs_writes_total[$interval])) ",
                     "format": "time_series",
@@ -1566,7 +1622,7 @@
             ],
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "format": "percent",
             "gauge": {
@@ -1618,7 +1674,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum((node_filesystem_free_bytes{mountpoint=\"/rootfs\"} / node_filesystem_size_bytes{mountpoint=\"/rootfs\"}) * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"} * 100) / count(node_meta * on(instance) group_left(node_name) node_meta{node_id=~\"$node_id\"})",
                     "format": "time_series",
@@ -1649,7 +1705,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "decimals": 0,
             "fill": 1,
@@ -1690,7 +1746,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(engine_daemon_container_actions_seconds_count * on(instance) group_left(node_id) swarm_node_info{node_id=~\"$node_id\"})  by (action)",
                     "format": "time_series",
@@ -1734,7 +1790,7 @@
             "dashes": false,
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "decimals": 0,
             "fill": 1,
@@ -1775,7 +1831,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(engine_daemon_network_actions_seconds_count * on(instance) group_left(node_id) swarm_node_info{node_id=~\"$node_id\"})  by (action)",
                     "format": "time_series",
@@ -1812,6 +1868,7 @@
             ]
         },
         {
+            "autoMigrateFrom": "table-old",
             "columns": [
                 {
                     "text": "Avg",
@@ -1820,7 +1877,7 @@
             ],
             "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
             },
             "fontSize": "100%",
             "gridPos": {
@@ -1864,7 +1921,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
+                        "uid": "${datasource}"
                     },
                     "expr": "sum(engine_daemon_engine_info * on(instance) group_left(node_id) swarm_node_info) by (kernel, os, graphdriver, version, node_id)",
                     "format": "table",
@@ -1878,7 +1935,7 @@
             "timeFrom": "1s",
             "title": "Docker Engine Info",
             "transform": "timeseries_to_rows",
-            "type": "table-old"
+            "type": "table"
         }
     ],
     "refresh": "30s",
@@ -1889,6 +1946,23 @@
     "templating": {
         "list": [
             {
+                "current": {
+                    "selected": false,
+                    "text": "Prometheus",
+                    "value": "PBFA97CFB590B2093"
+                },
+                "hide": 0,
+                "includeAll": false,
+                "multi": false,
+                "name": "datasource",
+                "options": [],
+                "query": "prometheus",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "type": "datasource"
+            },
+            {
                 "allValue": ".+",
                 "current": {
                     "selected": false,
@@ -1897,18 +1971,22 @@
                 },
                 "datasource": {
                     "type": "prometheus",
-                    "uid": "PBFA97CFB590B2093"
+                    "uid": "${datasource}"
                 },
-                "definition": "",
+                "definition": "label_values(node_meta,node_id)",
                 "hide": 0,
                 "includeAll": true,
                 "label": "Swarm Node",
                 "multi": false,
                 "name": "node_id",
                 "options": [],
-                "query": "node_meta",
+                "query": {
+                    "qryType": 1,
+                    "query": "label_values(node_meta,node_id)",
+                    "refId": "PrometheusVariableQueryEditor-VariableQuery"
+                },
                 "refresh": 2,
-                "regex": "/node_id=\"([^\"]+)\"/",
+                "regex": "",
                 "skipUrlSync": false,
                 "sort": 0,
                 "type": "query"
