@@ -3314,7 +3314,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "red"
+                                        "color": "red",
+                                        "value": null
                                     },
                                     {
                                         "color": "yellow",
@@ -3333,7 +3334,7 @@
                         "h": 5,
                         "w": 6,
                         "x": 0,
-                        "y": 105
+                        "y": 97
                     },
                     "id": 131,
                     "options": {
@@ -3385,7 +3386,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green"
+                                        "color": "green",
+                                        "value": null
                                     },
                                     {
                                         "color": "red",
@@ -3400,7 +3402,7 @@
                         "h": 5,
                         "w": 3,
                         "x": 6,
-                        "y": 105
+                        "y": 97
                     },
                     "id": 41,
                     "options": {
@@ -3451,7 +3453,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green"
+                                        "color": "green",
+                                        "value": null
                                     },
                                     {
                                         "color": "#EAB839",
@@ -3474,7 +3477,7 @@
                         "h": 5,
                         "w": 3,
                         "x": 9,
-                        "y": 105
+                        "y": 97
                     },
                     "id": 76,
                     "options": {
@@ -3558,7 +3561,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green"
+                                        "color": "green",
+                                        "value": null
                                     },
                                     {
                                         "color": "red",
@@ -3574,7 +3578,7 @@
                         "h": 5,
                         "w": 12,
                         "x": 12,
-                        "y": 105
+                        "y": 97
                     },
                     "id": 43,
                     "options": {
@@ -3603,7 +3607,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\", task=~\"$task\"})",
+                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\", task=~\"$task\"} * on (instance) group_left(task) vault_core_active)",
                             "interval": "",
                             "intervalFactor": 5,
                             "legendFormat": "$task",
@@ -3630,7 +3634,7 @@
             "type": "row"
         }
     ],
-    "refresh": "30s",
+    "refresh": "10s",
     "schemaVersion": 39,
     "tags": [
         "vault",
@@ -3658,8 +3662,8 @@
             {
                 "current": {
                     "selected": false,
-                    "text": "test_vault",
-                    "value": "test_vault"
+                    "text": "test_vault3",
+                    "value": "test_vault3"
                 },
                 "datasource": {
                     "type": "prometheus",
@@ -3685,8 +3689,8 @@
             {
                 "current": {
                     "selected": false,
-                    "text": "test_vault/vault",
-                    "value": "test_vault/vault"
+                    "text": "test_vault3/vault",
+                    "value": "test_vault3/vault"
                 },
                 "datasource": {
                     "type": "prometheus",
