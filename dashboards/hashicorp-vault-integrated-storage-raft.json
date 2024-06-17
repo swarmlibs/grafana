@@ -98,7 +98,7 @@
                     "format": "time_series",
                     "instant": true,
                     "interval": "",
-                    "legendFormat": "Leader: {{ instance }}",
+                    "legendFormat": "Leader: {{ task }}",
                     "refId": "A"
                 }
             ],
@@ -693,7 +693,7 @@
                     "format": "time_series",
                     "instant": true,
                     "interval": "",
-                    "legendFormat": "{{ instance }}",
+                    "legendFormat": "{{ task }}",
                     "range": false,
                     "refId": "A"
                 }
@@ -3314,8 +3314,7 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "red",
-                                        "value": null
+                                        "color": "red"
                                     },
                                     {
                                         "color": "yellow",
@@ -3386,8 +3385,7 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green",
-                                        "value": null
+                                        "color": "green"
                                     },
                                     {
                                         "color": "red",
@@ -3453,8 +3451,7 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green",
-                                        "value": null
+                                        "color": "green"
                                     },
                                     {
                                         "color": "#EAB839",
@@ -3561,8 +3558,7 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green",
-                                        "value": null
+                                        "color": "green"
                                     },
                                     {
                                         "color": "red",
