@@ -2403,7 +2403,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "sum (vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"}) by (task)",
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "__auto",
@@ -2546,7 +2546,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "sum (vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active)",
+                    "expr": "sum (vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"}) by (task)",
                     "hide": false,
                     "interval": "",
                     "intervalFactor": 1,
@@ -2561,7 +2561,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "sum (increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval]) * on (instance) group_left(task) vault_core_active)",
+                    "expr": "sum (increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval]))  by (task)",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "Logs",
@@ -2669,7 +2669,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum (vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"}) by (task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
@@ -2778,7 +2778,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum (vault_raft_commitTime{job=\"$job\"} * on (instance) group_left(task) vault_core_active) by (quantile, dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_commitTime{job=\"$job\"}) by (quantile, task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "{{quantile}}% ({{dockerswarm_task_name}})",
@@ -2881,12 +2881,12 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum (vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"}) by (task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
-                    "refId": "B"
+                    "refId": "A"
                 }
             ],
             "title": "Raft Replication Heartbeat",
@@ -2989,7 +2989,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum (vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"}) by (task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
@@ -3093,7 +3093,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum (vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"}) by (task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
@@ -3194,7 +3194,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum (increase(vault_raft_apply{job=\"$job\"}[$__rate_interval]) * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (increase(vault_raft_apply{job=\"$job\"}[$__rate_interval])) by (task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
@@ -3264,7 +3264,7 @@
                     },
                     "editorMode": "code",
                     "exemplar": false,
-                    "expr": "sum (vault_raft_storage_stats_applied_index{job=\"$job\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "expr": "sum (vault_raft_storage_stats_applied_index{job=\"$job\"}) by (task)",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
@@ -3607,7 +3607,7 @@
                                 "uid": "${datasource}"
                             },
                             "editorMode": "code",
-                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\", task=~\"$task\"} * on (instance) group_left(task) vault_core_active)",
+                            "expr": "avg(vault_runtime_alloc_bytes{job=\"$job\", task=~\"$task\"})",
                             "interval": "",
                             "intervalFactor": 5,
                             "legendFormat": "$task",
@@ -3747,7 +3747,7 @@
         ]
     },
     "time": {
-        "from": "now-1h",
+        "from": "now-30m",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
