@@ -2821,7 +2821,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "auto",
+                        "showPoints": "never",
                         "spanNulls": false,
                         "stacking": {
                             "group": "A",
@@ -3033,7 +3033,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "auto",
+                        "showPoints": "never",
                         "spanNulls": false,
                         "stacking": {
                             "group": "A",
@@ -3314,7 +3314,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "red"
+                                        "color": "red",
+                                        "value": null
                                     },
                                     {
                                         "color": "yellow",
@@ -3385,7 +3386,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green"
+                                        "color": "green",
+                                        "value": null
                                     },
                                     {
                                         "color": "red",
@@ -3451,7 +3453,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green"
+                                        "color": "green",
+                                        "value": null
                                     },
                                     {
                                         "color": "#EAB839",
@@ -3537,7 +3540,7 @@
                                     "viz": false
                                 },
                                 "insertNulls": false,
-                                "lineInterpolation": "linear",
+                                "lineInterpolation": "smooth",
                                 "lineWidth": 1,
                                 "pointSize": 5,
                                 "scaleDistribution": {
@@ -3558,7 +3561,8 @@
                                 "mode": "absolute",
                                 "steps": [
                                     {
-                                        "color": "green"
+                                        "color": "green",
+                                        "value": null
                                     },
                                     {
                                         "color": "red",
@@ -3743,7 +3747,7 @@
         ]
     },
     "time": {
-        "from": "now-30m",
+        "from": "now-15m",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
