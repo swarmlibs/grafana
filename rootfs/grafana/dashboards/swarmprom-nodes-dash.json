@@ -2236,7 +2236,7 @@
             "type": "table"
         }
     ],
-    "refresh": "30s",
+    "refresh": "10s",
     "schemaVersion": 39,
     "tags": [
         "swarmprom"
@@ -2288,7 +2288,7 @@
         ]
     },
     "time": {
-        "from": "now-15m",
+        "from": "now-1h",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
