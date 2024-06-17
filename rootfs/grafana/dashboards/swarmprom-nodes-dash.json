@@ -2071,7 +2071,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum(rate(container_network_receive_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$__rate_interval]) * on(container_label_com_docker_swarm_node_id) group_left(node_name) node_meta) by (node_name)",
+                    "expr": "sum(rate(container_network_receive_bytes_total{node_id=~\"$node_id\"}[$__rate_interval]) * on(node_id) group_left(node_name) node_meta) by (node_name)",
                     "format": "time_series",
                     "intervalFactor": 2,
                     "legendFormat": "IN {{node_name}}",
@@ -2085,7 +2085,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "- sum(rate(container_network_transmit_bytes_total{container_label_com_docker_swarm_node_id=~\"$node_id\"}[$__rate_interval]) * on(container_label_com_docker_swarm_node_id) group_left(node_name) node_meta) by (node_name)",
+                    "expr": "- sum(rate(container_network_transmit_bytes_total{node_id=~\"$node_id\"}[$__rate_interval]) * on(node_id) group_left(node_name) node_meta) by (node_name)",
                     "format": "time_series",
                     "hide": false,
                     "intervalFactor": 2,
