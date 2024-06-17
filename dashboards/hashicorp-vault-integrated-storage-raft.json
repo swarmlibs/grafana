@@ -3263,6 +3263,7 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
+                    "exemplar": false,
                     "expr": "sum (vault_raft_storage_stats_applied_index{job=\"$job\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
                     "hide": false,
                     "instant": false,
@@ -3742,7 +3743,7 @@
         ]
     },
     "time": {
-        "from": "now-5m",
+        "from": "now-1h",
         "to": "now"
     },
     "timeRangeUpdatedDuringEditOrView": false,
