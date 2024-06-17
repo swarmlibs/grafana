@@ -20,7 +20,6 @@
     "fiscalYearStartMonth": 0,
     "gnetId": 12904,
     "graphTooltip": 1,
-    "id": 11,
     "links": [],
     "panels": [
         {
@@ -1070,7 +1069,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1174,7 +1174,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1288,7 +1289,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1389,7 +1391,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1535,7 +1538,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1645,7 +1649,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1748,7 +1753,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1847,7 +1853,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1975,7 +1982,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2091,7 +2099,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2196,7 +2205,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text"
+                                "color": "text",
+                                "value": null
                             }
                         ]
                     }
@@ -2343,7 +2353,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2392,10 +2403,10 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "sum without (instance) (vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"})",
+                    "expr": "sum (vault_raft_fsm_applyBatch{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
                     "interval": "",
                     "intervalFactor": 1,
-                    "legendFormat": "{{ task }}",
+                    "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
                 }
@@ -2452,7 +2463,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text"
+                                "color": "text",
+                                "value": null
                             }
                         ]
                     },
@@ -2483,7 +2495,8 @@
                                     "mode": "absolute",
                                     "steps": [
                                         {
-                                            "color": "green"
+                                            "color": "green",
+                                            "value": null
                                         },
                                         {
                                             "color": "light-orange",
@@ -2533,13 +2546,13 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "sum without (instance) (vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"})",
+                    "expr": "sum (vault_raft_leader_dispatchLog{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active)",
                     "hide": false,
                     "interval": "",
                     "intervalFactor": 1,
                     "legendFormat": "Time",
                     "range": true,
-                    "refId": "C"
+                    "refId": "A"
                 },
                 {
                     "datasource": {
@@ -2548,12 +2561,12 @@
                     },
                     "editorMode": "code",
                     "exemplar": true,
-                    "expr": "sum without (instance) (increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval]))",
+                    "expr": "sum (increase(vault_raft_leader_dispatchNumLogs{job=\"$job\"}[$__rate_interval]) * on (instance) group_left(task) vault_core_active)",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "Logs",
                     "range": true,
-                    "refId": "A"
+                    "refId": "B"
                 }
             ],
             "title": "Raft Dispatch Log",
@@ -2607,7 +2620,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2655,11 +2669,10 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "sum without (instance) (vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"})",
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "{{ task }}",
+                    "expr": "sum (vault_raft_rpc_appendEntries{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "hide": false,
+                    "instant": false,
+                    "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
                 }
@@ -2716,7 +2729,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2764,11 +2778,10 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "sum without (instance) (vault_raft_commitTime{job=\"$job\"})",
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "{{ quantile }}",
+                    "expr": "sum (vault_raft_commitTime{job=\"$job\"} * on (instance) group_left(task) vault_core_active) by (quantile)",
+                    "hide": false,
+                    "instant": false,
+                    "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
                 }
@@ -2824,7 +2837,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -2867,11 +2881,12 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum without (instance) (vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"})",
+                    "expr": "sum (vault_raft_replication_heartbeat{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "hide": false,
                     "instant": false,
-                    "legendFormat": "{{ task }}",
+                    "legendFormat": "__auto",
                     "range": true,
-                    "refId": "A"
+                    "refId": "B"
                 }
             ],
             "title": "Raft Replication Heartbeat",
@@ -2925,7 +2940,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2973,13 +2989,12 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "sum without (instance) (vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"})",
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "{{ task }}",
+                    "expr": "sum (vault_raft_leader_lastContact{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "hide": false,
+                    "instant": false,
+                    "legendFormat": "__auto",
                     "range": true,
-                    "refId": "C"
+                    "refId": "A"
                 }
             ],
             "title": "Leader Last Contacted",
@@ -3034,7 +3049,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -3077,9 +3093,10 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "expr": "sum without (instance) (vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"})",
+                    "expr": "sum (vault_raft_replication_appendEntries_rpc{job=\"$job\", quantile=\"0.9\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "hide": false,
                     "instant": false,
-                    "legendFormat": "{{ task }}",
+                    "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
                 }
@@ -3136,7 +3153,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             }
                         ]
                     },
@@ -3176,10 +3194,10 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "sum without (instance) (increase(vault_raft_apply{job=\"$job\"}[$__rate_interval]))",
-                    "interval": "",
-                    "legendFormat": "{{task}}",
+                    "expr": "sum (increase(vault_raft_apply{job=\"$job\"}[$__rate_interval]) * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "hide": false,
+                    "instant": false,
+                    "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
                 }
@@ -3203,7 +3221,8 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "text"
+                                "color": "text",
+                                "value": null
                             }
                         ]
                     },
@@ -3244,11 +3263,10 @@
                         "uid": "${datasource}"
                     },
                     "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "sum without (instance, peer_id) (vault_raft_storage_stats_applied_index{job=\"$job\"})",
-                    "interval": "",
-                    "intervalFactor": 1,
-                    "legendFormat": "{{ task }}",
+                    "expr": "sum (vault_raft_storage_stats_applied_index{job=\"$job\"} * on (instance) group_left(task) vault_core_active) by (dockerswarm_task_name)",
+                    "hide": false,
+                    "instant": false,
+                    "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
                 }
@@ -3638,9 +3656,9 @@
             },
             {
                 "current": {
-                    "selected": true,
-                    "text": "valut_local2",
-                    "value": "valut_local2"
+                    "selected": false,
+                    "text": "test_vault",
+                    "value": "test_vault"
                 },
                 "datasource": {
                     "type": "prometheus",
@@ -3666,8 +3684,8 @@
             {
                 "current": {
                     "selected": false,
-                    "text": "valut_local2/vault",
-                    "value": "valut_local2/vault"
+                    "text": "test_vault/vault",
+                    "value": "test_vault/vault"
                 },
                 "datasource": {
                     "type": "prometheus",
@@ -3755,6 +3773,6 @@
     "timezone": "",
     "title": "Hashicorp Vault - Integrated storage (Raft)",
     "uid": "cdokwkbtoqmf4b",
-    "version": 34,
+    "version": 1,
     "weekStart": ""
 }
