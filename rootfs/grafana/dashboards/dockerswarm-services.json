@@ -2323,7 +2323,7 @@
     },
     "timezone": "",
     "title": "Docker Swarm Services",
-    "uid": "C1979FE5-DD09-4D60-8E9D-8966A798C830",
+    "uid": "swarmlibs-dockerswarm-services",
     "version": 1,
     "weekStart": ""
 }
