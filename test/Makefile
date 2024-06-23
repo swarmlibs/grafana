@@ -5,7 +5,7 @@ it:
 
 deploy:
 	docker network create --scope=swarm --driver=overlay --attachable dockerswarm_ingress || true
-	docker network create --scope=swarm --driver=overlay --attachable dockerswarm_metrics || true
+	docker network create --scope=swarm --driver=overlay --attachable prometheus || true
 	docker stack deploy -c docker-stack.yml --detach=false $(docker-stack-name)
 
 remove:

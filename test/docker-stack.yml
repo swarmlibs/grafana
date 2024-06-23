@@ -6,17 +6,6 @@ x-default-logging: &x-default-logging
     max-file: "5"
   driver: json-file
 
-volumes:
-  grafana-data:
-
-networks:
-  dockerswarm_ingress:
-    name: dockerswarm_ingress
-    external: true
-  dockerswarm_metrics:
-    name: dockerswarm_metrics
-    external: true
-  
 services:
 
   # ====================================================
@@ -36,9 +25,23 @@ services:
     ports:
       - published: 3000
         target: 3000
-    hostname: grafana.svc.cluster.local
+    hostname: grafana-{{.Task.Slot}}.svc.cluster.local
     networks:
+      grafana_unified_alerting:
+      prometheus:
       dockerswarm_ingress:
-      dockerswarm_metrics:
     volumes:
       - grafana-data:/var/lib/grafana
+
+volumes:
+  grafana-data:
+
+networks:
+  grafana_unified_alerting:
+    # Attach the network to the Grafana service
+  prometheus:
+    name: prometheus
+    external: true
+  dockerswarm_ingress:
+    name: dockerswarm_ingress
+    external: true
