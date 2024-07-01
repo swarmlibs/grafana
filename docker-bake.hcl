@@ -13,7 +13,6 @@ target "default" {
 
 target "local" {
     inherits = [ "grafana" ]
-    dockerfile = "Dockerfile.local"
     tags = [ "swarmlibs/grafana:local" ]
 }
 
