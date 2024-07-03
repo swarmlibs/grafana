@@ -30,7 +30,4 @@ export GF_UNIFIED_ALERTING_HA_PEERS=${GF_UNIFIED_ALERTING_HA_PEERS:-"tasks.grafa
 export GF_UNIFIED_ALERTING_HA_ADVERTISE_ADDRESS=${GF_UNIFIED_ALERTING_HA_ADVERTISE_ADDRESS:-":9094"}
 export GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT=${GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT:-"15s"}
 
-# Add a watchdog to monitor the provisioning directory
-echo "Starting watchdog to monitor provisioning directory..."
-sleep 15
-exec /watchdog "${GF_PATHS_PROVISIONING}" /run.sh "$@"
+exec /run.sh "$@"
