@@ -30,10 +30,6 @@ export GF_UNIFIED_ALERTING_HA_PEERS=${GF_UNIFIED_ALERTING_HA_PEERS:-"tasks.grafa
 export GF_UNIFIED_ALERTING_HA_ADVERTISE_ADDRESS=${GF_UNIFIED_ALERTING_HA_ADVERTISE_ADDRESS:-":9094"}
 export GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT=${GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT:-"15s"}
 
-# Plugins
-export SWARMLIBS_GF_INSTALL_PLUGINS="grafana-github-datasource,grafana-gitlab-datasource,grafana-sentry-datasource"
-export GF_INSTALL_PLUGINS="${SWARMLIBS_GF_INSTALL_PLUGINS}${GF_INSTALL_PLUGINS:+,}${GF_INSTALL_PLUGINS}"
-
 # Add a watchdog to monitor the provisioning directory
 echo "Starting watchdog to monitor provisioning directory..."
 sleep 15
