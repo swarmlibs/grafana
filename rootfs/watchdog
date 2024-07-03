@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Script name
+ME=$(basename $0)
+
+# Check for correct number of arguments
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $ME <directory_to_watch> <program_to_restart>"
+  exit 1
+fi
+
+DIRECTORY_TO_WATCH="$1"
+PROGRAM_TO_RESTART="$2"
+PID_FILE="/tmp/watched_program.pid"
+WATCHER_PID=""
+
+start_program() {
+  echo "$ME: Starting program: $PROGRAM_TO_RESTART"
+  $PROGRAM_TO_RESTART &
+  echo $! > $PID_FILE
+}
+
+stop_program() {
+  if [ -f $PID_FILE ]; then
+    PID=$(cat $PID_FILE)
+    if [ -d /proc/$PID ]; then
+      echo "$ME: Stopping program: $PROGRAM_TO_RESTART"
+      kill $PID
+      rm -f $PID_FILE
+    fi
+  fi
+}
+
+restart_program() {
+  stop_program
+  sleep 15  # Add delay after stopping the program
+  start_program
+}
+
+# Handle SIGINT and SIGTERM to clean up properly
+cleanup() {
+  echo "$ME: Caught interrupt signal, stopping program and exiting."
+  stop_program
+  if [ -n "$WATCHER_PID" ]; then
+    kill $WATCHER_PID
+  fi
+  exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+
+# Start the program initially
+start_program
+
+# Monitor the directory for changes
+inotifywait -m -r -e modify,create,delete,move "$DIRECTORY_TO_WATCH" | while read path action file; do
+  echo "$ME: Event detected: $action on $path$file"
+  restart_program
+done &
+
+WATCHER_PID=$!
+wait $WATCHER_PID

@@ -34,4 +34,7 @@ export GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT=${GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT
 export SWARMLIBS_GF_INSTALL_PLUGINS="grafana-github-datasource,grafana-gitlab-datasource,grafana-sentry-datasource"
 export GF_INSTALL_PLUGINS="${SWARMLIBS_GF_INSTALL_PLUGINS}${GF_INSTALL_PLUGINS:+,}${GF_INSTALL_PLUGINS}"
 
-exec /run.sh "$@"
+# Add a watchdog to monitor the provisioning directory
+echo "Starting watchdog to monitor provisioning directory..."
+sleep 15
+exec /watchdog "${GF_PATHS_PROVISIONING}" /run.sh "$@"
