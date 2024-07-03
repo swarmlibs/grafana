@@ -1,3 +1,0 @@
-grafana-github-datasource
-grafana-gitlab-datasource
-grafana-sentry-datasource

@@ -30,32 +30,4 @@ export GF_UNIFIED_ALERTING_HA_PEERS=${GF_UNIFIED_ALERTING_HA_PEERS:-"tasks.grafa
 export GF_UNIFIED_ALERTING_HA_ADVERTISE_ADDRESS=${GF_UNIFIED_ALERTING_HA_ADVERTISE_ADDRESS:-":9094"}
 export GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT=${GF_UNIFIED_ALERTING_HA_PEER_TIMEOUT:-"15s"}
 
-echo "Generating dashboard provisioning configuration..."
-cat <<EOT > "/etc/grafana/provisioning/dashboards/grafana-dashboards.yml"
-apiVersion: 1
-providers:
-  - name: 'dashboards'
-    orgId: 1
-    type: file
-    disableDeletion: true
-    allowUiUpdates: false
-    updateIntervalSeconds: 60
-    options:
-      path: /grafana/dashboards
-      foldersFromFilesStructure: true
-EOT
-cat <<EOT > "/etc/grafana/provisioning/dashboards/grafana-provisioning-dashboard.yml"
-apiVersion: 1
-providers:
-  - name: 'grafana-provisioning-dashboard'
-    orgId: 1
-    type: file
-    disableDeletion: true
-    allowUiUpdates: false
-    updateIntervalSeconds: 60
-    options:
-      path: /etc/grafana/dashboards
-      foldersFromFilesStructure: true
-EOT
-
 exec /run.sh "$@"
